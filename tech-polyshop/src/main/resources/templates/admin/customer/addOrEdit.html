@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboardLayout.html}">
+
+<head>
+</head>
+
+<body>
+    <main class="container">
+        <section class="row" layout:fragment="content">
+            <div class="col-8 offset-2 mt-4">
+                <form th:action="@{/admin/customer/saveOrUpdate}" method="post" th:object="${customer}" enctype="multipart/form-data">
+                    <div class="card" style="box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
+                        <div class="card-header">
+                            <h2 style="font-family: 'Times New Roman', Times, serif;"> Add New Customer</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="customerId">Customer ID:</label>
+                                    <input type="hidden" th:field="*{isEdit}">
+                                    <input type="text" class="form-control" th:field="*{customerId}" aria-describedby="customerIdHid" placeholder="" readonly>
+                                    <small th:if="${#fields.hasErrors('customerId')}" id="customerIdHid" class="form-text text-muted">customerId is required </small>
+                                </div>
+                                <div class="col">
+                                    <label for="name">Name:</label>
+                                    <input type="text" class="form-control" th:field="*{name}" id="name" aria-describedby="nameHid" placeholder="" required>
+                                    <small th:if="${#fields.hasErrors('name')}" id="nameHid" class="form-text text-muted">Name is required or invalid</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" th:field="*{email}" id="email" aria-describedby="emailHid" placeholder="" required>
+                                    <small th:if="${#fields.hasErrors('email')}" id="emailHid" class="form-text text-muted">email is required or invalid</small>
+                                </div>
+                                <div class="col">
+                                    <label for="password">Password:</label>
+                                    <input type="password" class="form-control" th:field="*{password}" th:value="${customer.password}" required id="password" aria-describedby="passwordHid" placeholder="">
+                                    <small th:if="${#fields.hasErrors('password')}" id="passwordHid" class="form-text text-muted">password is required or invalid</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="phone">Phone:</label>
+                                    <input type="text" class="form-control" th:field="*{phone}" id="phone" aria-describedby="phoneHid" placeholder="" required>
+                                    <small th:if="${#fields.hasErrors('phone')}" id="phoneHid" class="form-text text-muted">Count is required or invalid</small>
+                                </div>
+                                <div class="col">
+                                    <label for="registerData">Date Register:</label>
+                                    <input type="text" class="form-control" th:field="*{registerData}" id="registerData" aria-describedby="registerDataHid" required placeholder="">
+                                    <small th:if="${#fields.hasErrors('registerData')}" id="registerDataHid" class="form-text text-muted">Date is required or invalid</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="status">Status:</label>
+                                    <input type="text" class="form-control" th:field="*{status}" id="status" aria-describedby="statusHid" placeholder="" required>
+                                    <small th:if="${#fields.hasErrors('status')}" id="statusHid" class="form-text text-muted">status is required or invalid</small>
+                                </div>
+                                <div class="col">
+                                    <label>Role</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked required>
+                                            <label class="form-check-label" for="gridRadios1">
+                                              Male
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                            <label class="form-check-label" for="gridRadios2">
+                                              Female
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="birthday">Birthday:</label>
+                                    <input type="text" class="form-control" th:field="*{birthday}" id="birthday" aria-describedby="birthdayHid" placeholder="" required>
+                                    <small th:if="${#fields.hasErrors('birthday')}" id="birthdayHid" class="form-text text-muted">Date is required or invalid</small>
+                                </div>
+                                <div class="col">
+                                    <label for="address">Adress:</label>
+                                    <input type="text" class="form-control" th:field="*{address}" id="address" aria-describedby="address" placeholder="" required>
+                                    <small th:if="${#fields.hasErrors('address')}" id="address" class="form-text text-muted">Count is required or invalid</small>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-footer text-muted">
+                            <button class="btn btn-outline-secondary">Reset</button>
+                            <a th:href="@{/admin/customer/searchpaginated}" class="btn btn-outline-success">List Customer</a>
+                            <button class="btn btn-outline-primary"><i class="fas fa-save"></i> 
+                            <span th:if="${customer.isEdit}">Update</span>
+                            <span th:unless="${customer.isEdit}">Save</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>

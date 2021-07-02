@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboardLayout.html}">
+
+<head>
+</head>
+
+<body>
+    <main class="container">
+        <section class="row" layout:fragment="content">
+            <div class="col-6 offset-3 mt-4">
+                <form th:action="@{/admin/account/saveOrUpdate}" method="post" th:object="${acc}">
+                    <div class="card" style="box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
+                        <div class="card-header">
+                            <h2 style="font-family: 'Times New Roman', Times, serif;"> Add New Acc</h2>
+                        </div>
+                        <div class="card-body">
+                            <!-- <input type="hidden" th:field="*{isEdit}"> -->
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" class="form-control" th:field="*{username}" id="username" aria-describedby="usernameHid" placeholder="">
+                                <small th:if="${#fields.hasErrors('username')}" id="usernameHid" class="form-text text-danger">Ussername is required or invalid</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" th:field="*{password}" id="password" aria-describedby="passwordHid" placeholder="">
+                                <small th:if="${#fields.hasErrors('password')}" id="passwordHid" class="form-text text-danger">Password is required or invalid</small>
+                            </div>
+                        </div>
+                        <div class="card-footer text-danger">
+                            <button class="btn btn-outline-secondary">Reset</button>
+                            <a th:href="@{/admin/account/searchpaginated}" class="btn btn-outline-success">List account</a>
+                            <button class="btn btn-outline-primary"><i class="fas fa-save"></i> 
+                            <span th:if="${acc.isEdit}">Update</span>
+                            <span th:unless="${acc.isEdit}">Save</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

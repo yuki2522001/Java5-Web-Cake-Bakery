@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{site/dashboardLayout.html}">
+
+<head>
+</head>
+
+<body style="font-family: 'Times New Roman', Times, serif;">
+    <section class="price_list_area p_100 " layout:fragment="content">
+        <div class="">
+            <div class="price_list_inner ">
+                <div class="single_pest_title ">
+                    <h2>List Products</h2>
+                    <div class="card-body ">
+                        <div th:if="${message != null} " class="alert alert-primary " role="alert ">
+                            <i>[[${message}]]</i>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                            <div class="col">
+                                <div class="float-right ">
+                                    <a class="btn btn-outline-primary " th:href="@{/site/product/menu} ">Add New Product</a>
+                                    <a class="btn btn-outline-primary " th:href="@{/site/orders/clear} ">Clear Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table">
+                            <thead class="thead-inverse ">
+                                <tr>
+                                    <th scope="col">Product ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="item : ${CART_ITEMS}">
+                                    <form th:action="@{/site/orders/update}" method="post">
+                                        <input type="hidden" th:name="productId" th:value="${item.productId}" />
+                                        <td>[[${item.productId}]]</td>
+                                        <td>[[${item.name}]]</td>
+                                        <td>[[${item.unitPrice}]]</td>
+                                        <td><input th:name="quantity" th:value="${item.quantity}" onblur="this.form.submit()" style="width: 50px;"></td>
+                                        <td>[[${item.unitPrice * item.quantity}]]</td>
+                                        <td><a class="btn btn-primary btn-sm" th:href="@{'/site/orders/delete/' + ${item.productId}} ">Remove</a></td>
+                                    </form>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>Tổng tiền: [[${TOTAL}]]</p>
+                        <hr />
+                        <div>
+                            <a class="btn btn-primary btn-sm" th:href="@{/site/orders/save}">Đặt hàng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

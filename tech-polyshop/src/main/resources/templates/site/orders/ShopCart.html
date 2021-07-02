@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{site/dashboardLayout.html}">
+
+<head>
+</head>
+
+<body>
+    <div class="container" layout:fragment="content">
+        <h2 style="text-align:center;">Shopping Cart</h2> <br>
+        <div class="row">
+
+            <table class="table">
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col"></th>
+                </tr>
+                <c:set var="no" value="1"></c:set>
+                <c:forEach var="item" items="${cartItems}">
+                    <form th:action="@{/site/orders/ShopCart}" method="post" th:object="@{order}">
+                        <tr>
+                            <td>${no }</td>
+                            <td>${order.product.name }</td>
+                            <td><input type="hidden" name="product.productId" value="${order.product.productId }">
+                                <input type="number" value="${item.quantity }" name="quantity" onblur="this.form.submit()" /></td>
+                            <td>${item.unitPrice }</td>
+                            <td><a href="/shoppingCart/remove/${item.productId }">Remove</a>
+                            </td>
+                        </tr>
+                    </form>
+                    <c:set var="no" value="${no + 1 }"></c:set>
+                </c:forEach>
+            </table>
+            <a href="/products/menu">Product menu</a> <a href="/shoppingCart/checkout">Checkout</a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TechPolyshopApplication<tech-polyshop>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.techpolyshop.TechPolyshopApplication",
+            "projectName": "tech-polyshop",
+            "args": ""
+        }
+    ]
+}

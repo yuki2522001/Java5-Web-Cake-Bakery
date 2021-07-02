@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboardLayout.html}">
+
+<head>
+</head>
+
+<body>
+    <section class="price_list_area p_100" layout:fragment="content">
+        <div class="container">
+            <div class="price_list_inner">
+                <div class="single_pest_title">
+                    <h2>Our Price List</h2>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    <div class="card-body">
+                        <div th:if="${message != null}" class="alert alert-primary" role="alert">
+                            <i>[[${message}]]</i>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                            <div class="col">
+                                <form th:action="@{/admin/categories/search}">
+                                    <div class="form-inline float-left">
+                                        <label for="name">Name:</label>
+                                        <input type="text" class="form-control ml-2" name="name" id="name" aria-describedby="helpId" placeholder="">
+                                        <button class="btn btn-outline-primary ml-2">Search</button>
+                                    </div>
+                                </form>
+                                <div class="float-right">
+                                    <a class="btn btn-outline-primary" th:href="@{/admin/categories/add}">Add New Category</a>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-inverse">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Category ID</th>
+                                    <th>Name</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each=" category : ${categories}">
+                                    <td scope="row">[[${category.categoryId}]]</td>
+                                    <td th:text="${category.name}"></td>
+                                    <td>
+                                        <a th:href="@{'/admin/categories/view/' + ${category.categoryId}}" class="btn btn-outline-info"> <i class="fa fa-info" aria-hidden="true"></i> </a>
+                                        <a th:href="@{'/admin/categories/edit/' + ${category.categoryId}}" class="btn btn-outline-warning"><i class="fas fa-edit"></i> </a>
+                                        <a th:href="@{'/admin/categories/delete/' + ${category.categoryId}}" class="btn btn-outline-danger"> <i class="fa fa-recycle" aria-hidden="true"></i> </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="middle_list ">
+
+                            <nav aria-label="Page navigation example " th:if="${categoryPage.totalPages > 0}">
+                                <ul class="pagination">
+                                    <li th:class="${ 1== categoryPage.number + 1} ? 'page-item active' : 'page-item'">
+                                        <a th:href="@{/admin/categories/searchpaginated(name=${name}, size=${categoryPage.size}, page=${1})}" class="page-link">First</a>
+                                    </li>
+                                    <li class="page-item active" th:each="pageNumber : ${pageNumbers}" th:if="${categoryPage.totalPages > 1}" th:class="${pageNumber == categoryPage.number + 1} ? 'page-item active' : 'page-item'">
+                                        <a th:href="@{/admin/categories/searchpaginated(name=${name}, size=${categoryPage.size}, page=${pageNumber})}" class="page-link" th:text="${pageNumber}"></a>
+                                    </li>
+
+                                    <li th:class="${ categoryPage.totalPages == categoryPage.number + 1} ? 'page-item active' : 'page-item'">
+                                        <a th:href="@{/admin/categories/searchpaginated(name=${name}, size=${categoryPage.size}, page=${categoryPage.totalPages})}" class="page-link">Last</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="right_btn">
+                        </div>
+                    </div>
+                </div>
+                <div class="row our_bakery_image ">
+                    <div class="col-md-4 col-6 ">
+                        <img class="img-fluid " th:src="@{/images/img/our-bakery/bakery-1.jpg }" alt=" ">
+                    </div>
+                    <div class="col-md-4 col-6 ">
+                        <img class="img-fluid " th:src="@{/images/img/our-bakery/bakery-2.jpg}" alt=" ">
+                    </div>
+                    <div class="col-md-4 col-6 ">
+                        <img class="img-fluid " th:src="@{/images/img/our-bakery/bakery-3.jpg }" alt=" ">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

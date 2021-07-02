@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" th:href="@{/images/img/fav-icon.png}" type="image/x-icon" />
+    <title>Cake - Bakery</title>
+    <link href="../static/css/category-add.css" th:href="@{/css/category-add.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/csss/font-awesome.min.css" th:href="@{/css/csss/font-awesome.min.css}">
+    <link rel="stylesheet" href="../templates/css/csss/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/vendors/linearicons/style.css" th:href="@{/css/vendors/linearicons/style.css}">
+    <link rel="stylesheet" href="../static/css/vendors/flat-icon/flaticon.css" th:href="@{/css/vendors/flat-icon/flaticon.css}">
+    <link rel="stylesheet" href="../static/css/vendors/stroke-icon/style.css" th:href="@{/css/vendors/stroke-icon/style.css}">
+
+    <link rel="stylesheet" href="../static//css/csss/bootstrap.min.css" th:href="@{/css/csss/bootstrap.min.css}">
+
+    <link rel="stylesheet" href="../static/css/vendors/revolution/css/settings.css" th:href="@{/css/vendors/revolution/css/settings.css}">
+    <link rel="stylesheet" href="../static/css/vendors/revolution/css/layers.css" th:href="@{/css/vendors/revolution/css/layers.css}">
+    <link rel="stylesheet" href="../static/css/vendors/revolution/css/navigation.css" th:href="@{/css/vendors/revolution/css/navigation.css}">
+    <link rel="stylesheet" href="../static/css/vendors/animate-css/animate.css" th:href="@{/css/vendors/animate-css/animate.css}">
+
+    <link rel="stylesheet" href="../static/css/vendors/owl-carousel/owl.carousel.min.css" th:href="@{/css/vendors/owl-carousel/owl.carousel.min.css}">
+    <link rel="stylesheet" href="../static/css/vendors/magnifc-popup/magnific-popup.css" th:href="@{/css/vendors/magnifc-popup/magnific-popup.css}">
+    <link rel="stylesheet" href="../static/css/vendors/jquery-ui/jquery-ui.min.css" th:href="@{/css/vendors/jquery-ui/jquery-ui.min.css}">
+    <link rel="stylesheet" href="../static/css/vendors/nice-select/css/nice-select.css" th:href="@{/css/vendors/nice-select/css/nice-select.css}">
+
+    <link rel="stylesheet" href="../static/css/csss/style.css" th:href="@{/css/csss/style.css}">
+    <link rel="stylesheet" href="../static/css/csss/responsive.css" th:href="@{/css/csss/responsive.css}">
+    <link rel="stylesheet" href="../static/css/fontawesome-free-5.15.1-web/css/all.css" th:href="@{/css/fontawesome-free-5.15.1-web/css/all.css}">
+    <link rel="stylesheet" href="../static/css/css_dkk/main.css" th:href="@{/css/css_dkk/main.css}">
+    <link rel="stylesheet" href="../static/css/css_dkk/util.css" th:href="@{/css/css_dkk/util.css}">
+
+</head>
+
+<body>
+    <main class="">
+        <header class="main_header_area">
+            <!-- <div class="col"> -->
+            <div th:replace="site/fragment/header:: header"></div>
+            <!-- </div> -->
+        </header>
+        <nav class="row">
+            <div class="col">
+                <div th:replace="site/fragment/nav:: nav"></div>
+            </div>
+        </nav><br>
+        <section class="banner_area">
+            <!-- <div class="col"> -->
+            <div layout:fragment="content"></div>
+            <!-- </div> -->
+        </section> <br> <br>
+        <footer class="footer_area">
+            <!-- <div class="col"> -->
+            <div th:replace="site/fragment/footer:: footer"></div>
+            <!-- </div> -->
+        </footer>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script href="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script href="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{/js/jss/jquery-3.2.1.min.js}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" th:src="@{/js/jss/popper.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jss/bootstrap.min.js}"></script>
+    <!-- Rev slider js -->
+    <script type="text/javascript" th:src="@{/css/vendors/revolution/js/jquery.themepunch.revolution.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/vendors/revolution/js/jquery.themepunch.tools.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/vendors/revolution/js/extensions/revolution.extension.actions.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/vendors/revolution/js/extensions/revolution.extension.navigation.min.js}"></script>
+    <!-- Extra plugin js -->
+    <script type="text/javascript" th:src="@{/css/vendors/owl-carousel/owl.carousel.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/vendors/magnifc-popup/jquery.magnific-popup.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/vendors/isotope/imagesloaded.pkgd.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/vendors/isotope/isotope.pkgd.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/vendors/datetime-picker/js/moment.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/vendors/datetime-picker/js/bootstrap-datetimepicker.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/vendors/nice-select/js/jquery.nice-select.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/vendors/jquery-ui/jquery-ui.min.js}"></script>
+    <script type="text/javascript" th:src="@{/css/vendors/lightbox/simpleLightbox.min.js}"></script>
+
+    <script type="text/javascript" th:src="@{/js/jss/theme.js}"></script>
+</body>
+
+</html>

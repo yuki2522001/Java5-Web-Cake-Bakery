@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{site/dashboardLayout.html}">
+
+<head>
+</head>
+
+<body>
+    <main class="container">
+        <section class="row" layout:fragment="content">
+            <div class="col-8 offset-2 mt-4">
+                <form th:action="@{/site/account/saveOrUpdate}" method="post" th:object="${customer}" enctype="multipart/form-data">
+                    <div class="card" style="box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
+                        <div class="card-header">
+                            <h2 style="font-family: 'Times New Roman', Times, serif;"> Register An Account</h2>
+                            <b> <i>[[${message}]] </i></b>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- <div class="col">
+                                    <label for="customerId">Customer ID:</label>
+                                    <input type="hidden" th:field="*{isEdit}">
+                                    <input type="text" class="form-control" th:field="*{customerId}" aria-describedby="customerIdHid" placeholder="" readonly>
+                                    <small th:if="${#fields.hasErrors('customerId')}" id="customerIdHid" class="form-text text-muted">customerId is required </small>
+                                </div> -->
+                                <div class="col">
+                                    <label for="name">Name:</label>
+                                    <input type="text" class="form-control" th:field="*{name}" id="name" aria-describedby="nameHid" placeholder="">
+                                    <small th:if="${#fields.hasErrors('name')}" id="nameHid" class="form-text text-muted">Name is required or invalid</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" th:field="*{email}" id="email" aria-describedby="emailHid" placeholder="">
+                                    <small th:if="${#fields.hasErrors('email')}" id="emailHid" class="form-text text-muted">email is required or invalid</small>
+                                </div>
+                                <div class="col">
+                                    <label for="password">Password:</label>
+                                    <input type="password" class="form-control" th:field="*{password}" th:value="${customer.password}" id="password" aria-describedby="passwordHid" placeholder="">
+                                    <small th:if="${#fields.hasErrors('password')}" id="passwordHid" class="form-text text-muted">password is required or invalid</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="phone">Phone:</label>
+                                    <input type="text" class="form-control" th:field="*{phone}" id="phone" aria-describedby="phoneHid" placeholder="">
+                                    <small th:if="${#fields.hasErrors('phone')}" id="phoneHid" class="form-text text-muted">Count is required or invalid</small>
+                                </div>
+                                <div class="col">
+                                    <label for="registerData">Date Register:</label>
+                                    <input type="text" class="form-control" th:field="*{registerData}" id="registerData" aria-describedby="registerDataHid" placeholder="">
+                                    <small th:if="${#fields.hasErrors('registerData')}" id="registerDataHid" class="form-text text-muted">Date is required or invalid</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="status">Status:</label>
+                                    <input type="text" class="form-control" th:field="*{status}" id="status" aria-describedby="statusHid" placeholder="">
+                                    <small th:if="${#fields.hasErrors('status')}" id="statusHid" class="form-text text-muted">status is required or invalid</small>
+                                </div>
+                                <div class="col">
+                                    <label>Role</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                            <label class="form-check-label" for="gridRadios1">
+                                              Male
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                            <label class="form-check-label" for="gridRadios2">
+                                              Female
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="birthday">Birthday:</label>
+                                    <input type="text" class="form-control" th:field="*{birthday}" id="birthday" aria-describedby="birthdayHid" placeholder="">
+                                    <small th:if="${#fields.hasErrors('birthday')}" id="birthdayHid" class="form-text text-muted">Date is required or invalid</small>
+                                </div>
+                                <div class="col">
+                                    <label for="address">Adress:</label>
+                                    <input type="text" class="form-control" th:field="*{address}" id="address" aria-describedby="address" placeholder="">
+                                    <small th:if="${#fields.hasErrors('address')}" id="address" class="form-text text-muted">Count is required or invalid</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <button class="btn btn-outline-secondary">Registration</button>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboardLayout.html}">
+
+<head>
+</head>
+
+<body style="font-family: 'Times New Roman', Times, serif;">
+    <section class="price_list_area p_100 " layout:fragment="content">
+        <div class="">
+            <div class="price_list_inner ">
+                <div class="single_pest_title ">
+                    <h2>Order Detail</h2>
+                    <p class="lead">Enter information clearly and accurately
+                        <div class="card-body ">
+                            <table class="table">
+                                <thead class="thead-inverse ">
+                                    <tr>
+                                        <th scope="col">OrderId</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Order Date</th>
+                                        <th scope="col">Unit Price</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Amount</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="alert" role="alert" th:each="order : ${detail}">
+                                        <!-- <td class="d-flex align-items-center"> -->
+                                        <td th:text="${order.orderDetailId}"></td>
+                                        <td th:text="${order.product.name}"></td>
+                                        <td th:text="${order.order.orderDate}"></td>
+                                        <td th:text="${order.unitPrice}"></td>
+                                        <td th:text="${order.quantity}"></td>
+                                        <td th:text="${order.unitPrice}*${order.quantity}"></td>
+                                        <!-- <td th:text="${order.order.status}"></td> -->
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="product_pagination ">
+                            <div class="left_btn ">
+
+                            </div>
+                            <div class="middle_list ">
+
+                                <nav aria-label="Page navigation example " th:if="${orderPage.totalPages > 0}">
+                                    <ul class="pagination">
+                                        <li th:class="${ 1== orderPage.number + 1} ? 'page-item active' : 'page-item'">
+                                            <a th:href="@{/admin/categories/searchpaginated(name=${name}, size=${orderPage.size}, page=${1})}" class="page-link">First</a>
+                                        </li>
+                                        <li class="page-item active" th:each="pageNumber : ${pageNumbers}" th:if="${orderPage.totalPages > 1}" th:class="${pageNumber == orderPage.number + 1} ? 'page-item active' : 'page-item'">
+                                            <a th:href="@{/admin/categories/searchpaginated(name=${name}, size=${orderPage.size}, page=${pageNumber})}" class="page-link" th:text="${pageNumber}"></a>
+                                        </li>
+
+                                        <li th:class="${ orderPage.totalPages == orderPage.number + 1} ? 'page-item active' : 'page-item'">
+                                            <a th:href="@{/admin/categories/searchpaginated(name=${name}, size=${orderPage.size}, page=${orderPage.totalPages})}" class="page-link">Last</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="right_btn">
+                            </div>
+                        </div>
+                </div>
+                <div class="row our_bakery_image ">
+                    <div class="col-md-4 col-6 ">
+                        <img class="img-fluid " th:src="@{/images/img/our-bakery/bakery-1.jpg }" alt=" ">
+                    </div>
+                    <div class="col-md-4 col-6 ">
+                        <img class="img-fluid " th:src="@{/images/img/our-bakery/bakery-2.jpg}" alt=" ">
+                    </div>
+                    <div class="col-md-4 col-6 ">
+                        <img class="img-fluid " th:src="@{/images/img/our-bakery/bakery-3.jpg }" alt=" ">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

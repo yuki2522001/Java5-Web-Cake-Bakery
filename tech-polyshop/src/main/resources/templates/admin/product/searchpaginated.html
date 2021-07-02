@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboardLayout.html}">
+
+<head>
+</head>
+
+<body style="font-family: 'Times New Roman', Times, serif;">
+    <section class="price_list_area p_100 " layout:fragment="content">
+        <div class="">
+            <div class="price_list_inner ">
+                <div class="single_pest_title ">
+                    <h2>Our product List</h2>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    <div class="card-body ">
+                        <div th:if="${message != null} " class="alert alert-primary " role="alert ">
+                            <i>[[${message}]]</i>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                            <div class="col">
+                                <form th:action="@{/admin/product/searchpaginated}" class="mb-3 d-flex search_widget">
+                                    <div class="input-group">
+                                        <input type="text" name="name" class="form-control" placeholder="Enter Search Keywords">
+                                        <div class="input-group-append">
+                                            <button class="btn"><i class="icon icon-Search"></i>...</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="left_btn ">
+                                    <form action="">
+                                        <div class="form-inline float-left ml-3">
+                                            <label for="size">Page Size</label>
+                                            <select class="form-control ml-3" name="size" id="size" onchange="this.form.submit()">
+                                            <option th:selected="${productPage.size == 5}" value="5">5</option>
+                                            <option th:selected="${productPage.size == 10}" value="10">10</option>
+                                            <option th:selected="${productPage.size == 15}" value="15">15</option>
+                                            <option th:selected="${productPage.size == 20}" value="20">20</option>
+                                            <option th:selected="${productPage.size == 30}" value="30">30</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="float-right ">
+                                    <a class="btn btn-outline-primary " th:href="@{/admin/product/add} ">Add New Product</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" th:if="${!productPage.hasContent()} ">
+                            <div class="col ">
+                                <div class="alert alert-danger " role="alert ">
+                                    <strong>No product Found</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table" th:if="${productPage.hasContent()} ">
+                            <thead class="thead-inverse ">
+                                <tr>
+                                    <!-- <th></th> -->
+                                    <th scope="col">Product ID</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Count</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Description</th>
+                                    <!-- <th scope="col">Category</th> -->
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each=" product, iStat : ${productPage.content}">
+                                    <!-- <td> <input type="checkbox" class="form-check-inline" name="" id=""> </td> -->
+                                    <td scope="row">[[${product.productId}]]</td>
+                                    <td> <img th:src="@{${product.photosImagePath}}" width="100px" height="100px" alt=""> </td>
+                                    <td th:text="${product.name}"></td>
+                                    <td>[[${product.unitPrice}]] $</td>
+                                    <!-- <td th:text="${product.unitPrice}"></td> -->
+                                    <td th:text="${product.quantity}"></td>
+                                    <td>[[${product.discount}]] %</td>
+                                    <!-- <td th:text="${product.discount}"></td> -->
+                                    <td th:text="${product.enteredDate}"></td>
+                                    <td th:text="${product.status}"></td>
+                                    <td th:text="${product.description}"></td>
+                                    <!-- <td th:check="${product.category.categoryId}"></td> -->
+                                    <td>
+                                        <a th:href="@{'/admin/product/view/' + ${product.productId}}" class="btn btn-outline-info btn-circle"> <i class="fa fa-info" aria-hidden="true"></i> </a>
+                                        <a th:href="@{'/admin/product/edit/' + ${product.productId}}" class="btn btn-outline-warning btn-circle"><i class="fas fa-edit"></i> </a>
+                                        <a th:data-id="${product.productId}" th:data-name="${product.name}" onclick="showConfirmMadeolDialog(this.getAttribute('data-id'), this.getAttribute('data-name'))" class="btn btn-outline-danger btn-circle"> <i class="fa fa-recycle" aria-hidden="true"></i> </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <script>
+                            function showConfirmMadeolDialog(id, name) {
+                                $('#productName').text(name);
+                                $('#yesOption').attr('href', '/admin/product/delete/' + id);
+                                $('#confirmationId').modal('show');
+                            }
+                        </script>
+                        <div class="modal fade" id="confirmationId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Confirmation</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Do you want to delete "<span id="productName"></span>"?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a id="yesOption" type="button" class="btn btn-danger">Yes</a>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="product_pagination ">
+                        <div class="left_btn "></div>
+                        <div class="middle_list ">
+
+                            <nav aria-label="Page navigation example " th:if="${productPage.totalPages > 0}">
+                                <ul class="pagination">
+                                    <li th:class="${ 1== productPage.number + 1} ? 'page-product active' : 'page-product'">
+                                        <a th:href="@{/admin/product/searchpaginated(name=${name}, size=${productPage.size}, page=${1})}" class="page-link">First</a>
+                                    </li>
+                                    <li class="page-product active" th:each="pageNumber : ${pageNumbers}" th:if="${productPage.totalPages > 1}" th:class="${pageNumber == productPage.number + 1} ? 'page-product active' : 'page-product'">
+                                        <a th:href="@{/admin/product/searchpaginated(name=${name}, size=${productPage.size}, page=${pageNumber})}" class="page-link" th:text="${pageNumber}"></a>
+                                    </li>
+
+                                    <li th:class="${ productPage.totalPages == productPage.number + 1} ? 'page-product active' : 'page-product'">
+                                        <a th:href="@{/admin/product/searchpaginated(name=${name}, size=${productPage.size}, page=${productPage.totalPages})}" class="page-link">Last</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="right_btn">
+                        </div>
+                    </div>
+                </div>
+                <div class="row our_bakery_image ">
+                    <div class="col-md-4 col-6 ">
+                        <img class="img-fluid " th:src="@{/images/img/our-bakery/bakery-1.jpg }" alt=" ">
+                    </div>
+                    <div class="col-md-4 col-6 ">
+                        <img class="img-fluid " th:src="@{/images/img/our-bakery/bakery-2.jpg}" alt=" ">
+                    </div>
+                    <div class="col-md-4 col-6 ">
+                        <img class="img-fluid " th:src="@{/images/img/our-bakery/bakery-3.jpg }" alt=" ">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

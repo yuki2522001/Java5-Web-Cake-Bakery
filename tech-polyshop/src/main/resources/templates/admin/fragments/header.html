@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+</head>
+
+<body>
+    <div th:fragment="header">
+        <header class="main_header_area">
+            <div class="top_header_area row m0">
+                <div class="container">
+                    <div class="float-left">
+                        <a href="tell:+18004567890"><i class="fa fa-phone" aria-hidden="true"></i> 0945346501</a>
+                        <a href="mainto:info@cakebakery.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> ht2522001@gmail.com</a>
+                    </div>
+                    <div class="nav-item dropdown float-right" ng-hide="isLogin">
+                        <div ng-controller="myCtrl">
+                            <a class="nav-link dropdown-toggle waves-effect" style="color: white;" href="" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span th:text="${session.USERNAME}" th:unless="${session == null}"></span>
+                                <i class="fa fa-user"> </i>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right dropdown-secondary" aria-labelledby="userDropdown">
+                                <div th:if="${acc==null}">
+                                    <a class="dropdown-item" href="registration.html">Đăng kí</a>
+                                    <a class="dropdown-item" th:href="@{/admin/login}">Đăng nhập</a>
+                                    <a class="dropdown-item" href="forgotpassword.html">Quên mật khẩu</a>
+                                    <!-- </div> -->
+                                    <!-- <div th:unless="${acc==null}"> -->
+                                    <a class="dropdown-item" th:href="@{/site/profile/add}">Thông tin cá nhân</a>
+                                    <a class="dropdown-item" th:href="@{/admin/account/change}">Đổi mật khẩu</a>
+                                    <a class="dropdown-item" th:href="@{/admin/logout}">Đăng xuất</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main_menu_area">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <a class="navbar-brand" href="./index.html">
+                            <img src="../images/img/logo.png" th:src="@{/images/img/logo.png}" alt="">
+                            <img src="../images/img/logo-2.png" th:src="@{/images/img/logo-2.png}" alt="">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="my_toggle_menu">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                            </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                <li><a th:href="@{/admin/product/index}">Home</a></li>
+                                <li><a th:href="@{/admin/categories/add}">MN Category</a></li>
+                                <li><a th:href="@{/admin/customer/searchpaginated}">MN Customer</a></li>
+                                <!-- <li><a th:href="@{/admin/product/index}">Menu</a></li> -->
+
+                            </ul>
+                            <ul class="navbar-nav justify-content-end">
+                                <li class="dropdown submenu">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MN Order</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a th:href="@{/admin/orders/searchpaginated}">Orders</a></li>
+                                        <li class="dropdown submenu">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">OrderDetail</a>
+                                            <!-- <ul class="dropdown-menu">
+                                                <li><a href="portfolio.html">-  Gallery Classic</a></li>
+                                                <li><a href="portfolio-full-width.html">-  Gallery Full width</a></li>
+                                            </ul> -->
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a th:href="@{/admin/account/add}">MN Account</a></li>
+                                <li><a th:href="@{/admin/report}">Report</a></li>
+                                <li><a th:href="@{/admin/product/contact}">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+    </div>
+</body>
+
+</html>

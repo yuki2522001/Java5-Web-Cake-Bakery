@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{site/dashboardLayout.html}">
+
+<head>
+</head>
+
+<body>
+
+    <!--================Product Area =================-->
+    <section class="product_area p_120" layout:fragment="content">
+        <div class="container">
+            <div class="row product_inner_row">
+                <div class="col-9">
+                    <div class="row mt-2 mb-2">
+                        <div class="col">
+                            <form th:action="@{/site/product/menu}" class="mb-3 d-flex search_widget">
+                                <div class="input-group">
+                                    <input type="text" name="name" class="form-control" placeholder="Enter Search Keywords">
+                                    <div class="input-group-append">
+                                        <button class="btn"><i class="icon icon-Search"></i>...</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="left_btn ">
+                                <form action="">
+                                    <div class="form-inline float-left ml-3">
+                                        <label for="size">Page Size</label>
+                                        <select class="form-control ml-3" name="size" id="size" onchange="this.form.submit()">
+                                        <option th:selected="${productPage.size == 6}" value="6">6</option>
+                                        <option th:selected="${productPage.size == 12}" value="12">12</option>
+                                        <option th:selected="${productPage.size == 16}" value="16">16</option>
+                                        <option th:selected="${productPage.size == 20}" value="20">20</option>
+                                        <option th:selected="${productPage.size == 30}" value="30">30</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="float-right ">
+                                <a class="btn btn-outline-primary " th:href="@{/orders/ShopCart}">Order List</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row " th:if="${!productPage.hasContent()} ">
+                        <div class="col ">
+                            <div class="alert alert-danger " role="alert ">
+                                <strong>No product Found</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row product_item_inner ">
+                        <div class="col-lg-4 col-md-4 col-6 " th:each=" product, iStat : ${productPage.content} ">
+                            <div class="cake_feature_item ">
+                                <a th:href="@{ '/site/product/searchpaginated/'} ">
+                                    <div class="cake_img ">
+                                        <img th:src="@{${product.photosImagePath}} " width="212px " height="190px " alt=" ">
+                                    </div>
+                                    <div class="cake_text ">
+                                        <h4 th:text="${product.unitPrice} "></h4>
+                                        <h5 th:text="${product.productId}"></h5>
+                                        <h3 th:text="${product.name} "></h3>
+                                        <a class="pest_btn " th:href="@{'/site/orders/add/' + ${product.productId}}">Add to cart</a>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product_pagination ">
+                        <div class="left_btn "></div>
+                        <div class="middle_list ">
+
+                            <nav aria-label="Page navigation example " th:if="${productPage.totalPages> 0}">
+                                <ul class="pagination">
+                                    <li th:class="${ 1== productPage.number + 1} ? 'page-item active' : 'page-item'">
+                                        <a th:href="@{/site/product/menu(name=${name}, size=${productPage.size}, page=${1})}" class="page-link">First</a>
+                                    </li>
+                                    <li class="page-item active" th:each="pageNumber : ${pageNumbers}" th:if="${productPage.totalPages > 1}" th:class="${pageNumber == productPage.number + 1} ? 'page-item active' : 'page-item'">
+                                        <a th:href="@{/site/product/menu(name=${name}, size=${productPage.size}, page=${pageNumber})}" class="page-link" th:text="${pageNumber}"></a>
+                                    </li>
+
+                                    <li th:class="${ productPage.totalPages == productPage.number + 1} ? 'page-item active' : 'page-item'">
+                                        <a th:href="@{/site/product/menu(name=${name}, size=${productPage.size}, page=${productPage.totalPages})}" class="page-link">Last</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="right_btn">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="product_left_sidebar">
+                        <aside class="left_sidebar p_catgories_widget">
+                            <div class="p_w_title">
+                                <h3>Product Categories</h3>
+                            </div>
+                            <ul class="list_style">
+                                <li><a href="#">Cupcake (17)</a></li>
+                                <li><a href="#">Chocolate (16)</a></li>
+                                <li><a href="#">Celebration (14)</a></li>
+                                <li><a href="#">Wedding Cake (8)</a></li>
+                                <li><a href="#">Desserts (11)</a></li>
+                            </ul>
+                        </aside>
+                        <aside class="left_sidebar p_price_widget">
+                            <div class="p_w_title">
+                                <h3>Filter By Price</h3>
+                            </div>
+                            <div class="filter_price">
+                                <div id="slider-range"></div>
+                                <label for="amount">Price range:</label>
+                                <input type="text" id="amount" readonly />
+                                <a href="#">Filter</a>
+                            </div>
+                        </aside>
+                        <aside class="left_sidebar p_sale_widget">
+                            <div class="p_w_title">
+                                <h3>Top Sale Products</h3>
+                            </div>
+                            <div class="media">
+                                <div class="d-flex">
+                                    <img th:src="@{/images/img/product/sale-product/s-product-1.jpg}" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <a href="#">
+                                        <h4>Brown Cake</h4>
+                                    </a>
+                                    <ul class="list_style">
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                    </ul>
+                                    <h6>$29</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="d-flex">
+                                    <img th:src="@{/images/img/product/sale-product/s-product-2.jpg}" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <a href="#">
+                                        <h4>Brown Cake</h4>
+                                    </a>
+                                    <ul class="list_style">
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                    </ul>
+                                    <h6>$29</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="d-flex">
+                                    <img th:src="@{/images/img/product/sale-product/s-product-3.jpg}" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <a href="#">
+                                        <h4>Brown Cake</h4>
+                                    </a>
+                                    <ul class="list_style">
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                    </ul>
+                                    <h6>$29</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="d-flex">
+                                    <img th:src="@{/images/img/product/sale-product/s-product-4.jpg}" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <a href="#">
+                                        <h4>Brown Cake</h4>
+                                    </a>
+                                    <ul class="list_style">
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o"></i></a></li>
+                                    </ul>
+                                    <h6>$29</h6>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

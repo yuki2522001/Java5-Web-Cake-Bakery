@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboardLayout.html}">
+
+<head>
+</head>
+
+
+<body>
+    <main class="container" layout:fragment="content">
+        <header class="row text-center">
+        </header>
+        <section class="row">
+            <div class="col mt-4">
+                <form th:action="@{/admin/product/saveOrUpdate}" method="post" th:object="${product}" enctype="multipart/form-data">
+                    <div class="card" style="box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
+                        <div class="card-header">
+                            <h2 style="font-family: 'Times New Roman', Times, serif;"> Add New Product</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-7">
+                                    <div class="form-group">
+                                        <label for="productId">Product ID:</label>
+                                        <input type="hidden" th:field="*{isEdit}">
+                                        <input type="text" class="form-control" th:field="*{productId}" aria-describedby="productIdHid" placeholder="" readonly>
+                                        <small th:if="${#fields.hasErrors('productId')}" id="productIdHid" class="form-text text-muted">productId is required </small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Name:</label>
+                                        <input type="text" class="form-control" th:field="*{name}" id="name" aria-describedby="nameHid" placeholder="">
+                                        <small th:if="${#fields.hasErrors('name')}" id="nameHid" class="form-text text-muted">Name is required or invalid</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="quantity">Quantity:</label>
+                                        <input type="text" class="form-control" th:field="*{quantity}" id="quantity" aria-describedby="quantityHid" placeholder="">
+                                        <small th:if="${#fields.hasErrors('quantity')}" id="quantityHid" class="form-text text-muted">Quantity is required or invalid</small>
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <span class="input-group-text">Unit Price</span>
+                                        <input type="number" th:field="*{unitPrice}" name="unitPrice" id="unitPrice" class="form-control" placeholder="">
+                                        <span th:if="${#fields.hasErrors('unitPrice')}" class="input-group-text">$</span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Category</label>
+                                        <!-- <select th:field="*{category.categoryId}"> -->
+                                        <select name="" id="">
+                                    <option th:each="category : ${category}" th:value="${category.categoryId}" th:text="${category.name}" />
+                                     </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="enteredDate">Date:</label>
+                                        <input type="text" class="form-control" th:field="*{enteredDate}" id="enteredDate" aria-describedby="enteredDateHid" placeholder="">
+                                        <small th:if="${#fields.hasErrors('enteredDate')}" id="enteredDateHid" class="form-text text-muted">Date is required or invalid</small>
+                                    </div>
+
+                                </div>
+                                <div class="col-3" style="margin: 0 auto; width: 100%;">
+                                    <img src="../images/img-01.png" width="90%" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                                    <div class="form-group">
+                                        <label for="file_product">Image File</label>
+                                        <input type="file" class="form-control-file" name="file_product" id="file_product" placeholder="" aria-describedby="file_product">
+                                        <small id="file_product" class="form-text text-muted"></small>
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <span class="input-group-text">Discount</span>
+                                        <input th:field="*{discount}" type="number" name="discount" id="discount" class="form-control" placeholder="">
+                                        <span th:if="${#fields.hasErrors('discount')}" class="input-group-text">%</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="status">Status</label>
+                                        <select class="form-control" name="status" id="status">
+                                        <option>Out of Stock</option>
+                                        <option>On Sale</option>
+                                        <option>Featured</option>
+                                        <option>Bestseller</option>
+                                        <option>Out of Order</option>
+                                      </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="description">Description:</label>
+                                        <textarea type="text" rows="3" class="form-control" th:field="*{description}" id="description" aria-describedby="descriptionHid" placeholder=""> </textarea>
+                                        <small th:if="${#fields.hasErrors('description')}" id="descriptionHid" class="form-text text-muted"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <button class="btn btn-outline-secondary">Reset</button>
+                            <a th:href="@{/admin/product/searchpaginated}" class="btn btn-outline-success">List Categories</a>
+                            <button class="btn btn-outline-primary"><i class="fas fa-save"></i> 
+                            <span th:if="${product.isEdit}">Update</span>
+                            <span th:unless="${product.isEdit}">Save</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <footer class="row"></footer>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>

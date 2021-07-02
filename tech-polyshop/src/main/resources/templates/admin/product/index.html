@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboardLayout.html}">
+
+<head>
+</head>
+
+<body>
+
+    <!--================Slider Area =================-->
+    <form th:action="@{/admin/product/index}"></form>
+    <!--================End Slider Area =================-->
+
+    <!--================Welcome Area =================-->
+    <section class="welcome_bakery_area" layout:fragment="content">
+        <div class="container">
+            <div class="welcome_bakery_inner p_100">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="main_title">
+                            <h2>Welcome to our Bakery</h2>
+                            <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur uis autem vel eum.</p>
+                        </div>
+                        <div class="welcome_left_text">
+                            <p>Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial
+                                example, which of us ever undertakes laborious physical exercise.</p>
+                            <a class="pink_btn" href="#">Know more about us</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="welcome_img">
+                            <img class="img-fluid" th:src="@{/images/ggg.jpg}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cake_feature_inner">
+                <div class="main_title">
+                    <h2>Our Featured Cakes</h2>
+                    <h5> Seldolor sit amet consect etur</h5>
+                </div>
+                <div class="cake_feature_slider owl-carousel">
+                    <div class="item">
+                        <div class="cake_feature_item">
+                            <div class="cake_img">
+                                <img th:src="@{/images/img/cake-feature/c-feature-1.jpg}" alt="">
+                            </div>
+                            <div class="cake_text">
+                                <h4>$29</h4>
+                                <h3>Strawberry Cupcakes</h3>
+                                <a class="pest_btn" href="#">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="cake_feature_item">
+                            <div class="cake_img">
+                                <img th:src="@{/images/img/cake-feature/c-feature-2.jpg}" alt="">
+                            </div>
+                            <div class="cake_text">
+                                <h4>$29</h4>
+                                <h3>Strawberry Cupcakes</h3>
+                                <a class="pest_btn" href="#">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="cake_feature_item">
+                            <div class="cake_img">
+                                <img th:src="@{/images/img/cake-feature/c-feature-3.jpg}" alt="">
+                            </div>
+                            <div class="cake_text">
+                                <h4>$29</h4>
+                                <h3>Strawberry Cupcakes</h3>
+                                <a class="pest_btn" href="#">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="cake_feature_item">
+                            <div class="cake_img">
+                                <img th:src="@{/images/img/cake-feature/c-feature-4.jpg}" alt="">
+                            </div>
+                            <div class="cake_text">
+                                <h4>$29</h4>
+                                <h3>Strawberry Cupcakes</h3>
+                                <a class="pest_btn" href="#">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Welcome Area =================-->
+
+    <!--================Special Recipe Area =================-->
+    <section class="special_recipe_area">
+        <div class="container">
+            <div class="special_recipe_slider owl-carousel">
+                <div class="item">
+                    <div class="media">
+                        <div class="d-flex">
+                            <img src="img/recipe/recipe-1.png" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h4>Special Recipe</h4>
+                            <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi equatur uis autem vel eum.</p>
+                            <a class="w_view_btn" href="#">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="media">
+                        <div class="d-flex">
+                            <img src="img/recipe/recipe-1.png" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h4>Special Recipe</h4>
+                            <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi equatur uis autem vel eum.</p>
+                            <a class="w_view_btn" href="#">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="media">
+                        <div class="d-flex">
+                            <img src="img/recipe/recipe-1.png" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h4>Special Recipe</h4>
+                            <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi equatur uis autem vel eum.</p>
+                            <a class="w_view_btn" href="#">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="media">
+                        <div class="d-flex">
+                            <img src="img/recipe/recipe-1.png" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h4>Special Recipe</h4>
+                            <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi equatur uis autem vel eum.</p>
+                            <a class="w_view_btn" href="#">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Special Recipe Area =================-->
+</body>
+
+</html>

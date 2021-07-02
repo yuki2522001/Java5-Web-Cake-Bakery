@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboardLayout.html}">
+
+<head>
+</head>
+
+<body style="font-family: 'Times New Roman', Times, serif;">
+    <section class="price_list_area p_100" layout:fragment="content">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2>Our Categories List</h2>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+            <div class="col mt-4">
+                <div class="card">
+                    <!-- <div class="card-header"> -->
+                    <h2>List of Categories</h2>
+                    <!-- </div> -->
+                    <div class="card-body" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
+                        <div th:if="@{message != null}" class="alert alert-primary" role="alert">
+                            <i>[[${message}]]</i>
+                        </div>
+                        <table class="table">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Category ID</th>
+                                    <th>Name</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each=" category : ${categories}">
+                                    <td scope="row">[[${category.categoryId}]]</td>
+                                    <td th:text="${category.name}"></td>
+                                    <td>
+                                        <a th:href="@{'/admin/categories/view/' + ${category.categoryId}}" class="btn btn-outline-info"> <i class="fa fa-info" aria-hidden="true"></i> </a>
+                                        <a th:href="@{'/admin/categories/edit/' + ${category.categoryId}}" class="btn btn-outline-warning"><i class="fas fa-edit"></i> </a>
+                                        <a th:href="@{'/admin/categories/delete/' + ${category.categoryId}}" class="btn btn-outline-danger"> <i class="fa fa-recycle" aria-hidden="true"></i> </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="product_pagination">
+                    <div class="left_btn">
+                        <a href="#"><i class="lnr lnr-arrow-left"></i> New posts</a>
+                    </div>
+                    <div class="middle_list">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                                <li class="page-item"><a class="page-link" href="#">12</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="right_btn"><a href="#">Older posts <i class="lnr lnr-arrow-right"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>
